@@ -14,31 +14,29 @@ const navLinks = computed(() => [
 </script>
 
 <template>
-  <header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <!-- Logo -->
-      <!-- <NuxtLink to="/" class="flex items-center">
-        <img src="/images/logo.svg" alt="AB Forwarding" class="h-14" />
-      </NuxtLink> -->
+  <header class="bg-quaternary sticky top-0 z-50">
+    <div class="flex justify-between items-center h-16 px-12">
+      <!-- Logo (sin cambios) -->
+      <NuxtLink :to="localePath('/')" class="flex items-center">
+        <img src="/images/logo.png" alt="AB Forwarding" class="h-12" />
+      </NuxtLink>
 
-      <div>Logo</div>
-      <!-- Navegación -->
+      <!-- Navegación - Mismos links pero con nuevos estilos -->
       <nav class="hidden md:flex items-center gap-8">
         <NuxtLink
           v-for="link in navLinks"
-          :key="link.name"
+          :key="link.path"
           :to="localePath(link.path)"
-          class="font-montserrat font-medium text-dark hover:text-accent transition-colors duration-300"
-          :class="{ 'text-primary': $route.path === link.path }"
+          class="font-medium text-tertiary transition-colors text-[16px] px-3 py-2 rounded-lg"
         >
           {{ link.name }}
         </NuxtLink>
       </nav>
 
-      <!-- Acciones -->
-      <div class="flex items-center gap-6">
+      <!-- Acciones - Misma funcionalidad, nuevo diseño -->
+      <div class="flex items-center gap-4">
         <HeaderLanguageSwitcher />
-        <!-- <LanguageSwitcher /> -->
+        <!-- Componente sin cambios -->
       </div>
     </div>
   </header>

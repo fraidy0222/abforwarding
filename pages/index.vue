@@ -1,5 +1,8 @@
 <template>
-  <div>Hola</div>
+  <div>
+    <AppHero />
+    <AppFooter />
+  </div>
 </template>
 
 <script setup></script>
