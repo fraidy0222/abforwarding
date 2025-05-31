@@ -2,9 +2,11 @@
 @import "@nuxt/ui";
 
 @theme static {
-  --color-primary: #145998;
+  --color-primary: #103f80;
   --color-secondary: #df771a;
   --color-accent: #02a4e2;
+  --color-tertiary: #242424;
+  --color-quaternary: #f3f3f6;
 }
 
 /* .dark {
