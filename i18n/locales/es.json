@@ -5,5 +5,11 @@
     "sobre-nosotros": "Sobre Nosotros",
     "sucursales": "Sucursales",
     "contacto": "Contacto"
+  },
+  "hero": {
+    "tagline": "Envíos Globales",
+    "title": "Conectamos tu negocio con el mundo",
+    "description": "Envíos rápidos y seguros a cualquier destino. Nuestra red logística garantiza entregas puntuales con tecnología de seguimiento en tiempo real. ¡Tu paquete en las mejores manos!",
+    "cta_contact": "Contáctenos"
   }
 }
