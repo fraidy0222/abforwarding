@@ -14,7 +14,7 @@ const navLinks = computed(() => [
 </script>
 
 <template>
-  <header class="bg-white shadow-md lg:hidden">
+  <header class="bg-white sticky inset-0 z-50 shadow-md lg:hidden">
     <div class="px-4 py-3 flex justify-between items-center">
       <NuxtLink :to="localePath('/')" class="flex items-center">
         <NuxtImg
