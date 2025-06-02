@@ -31,5 +31,33 @@
     "benefit_3": "Tecnología de seguimiento en tiempo real",
     "benefit_4": "Soporte personalizado 24/7",
     "cta_contact": "Contáctenos"
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Soluciones logísticas",
+    "air": {
+      "title": "Transporte Aéreo",
+      "description": "Soluciones rápidas y seguras para envíos internacionales por vía aérea con seguimiento en tiempo real.",
+      "benefit1": "Entrega express 24-72 horas",
+      "benefit2": "Cobertura global"
+    },
+    "sea": {
+      "title": "Transporte Marítimo",
+      "description": "Soluciones económicas para cargas voluminosas con amplia capacidad y rutas globales.",
+      "benefit1": "Ideal para grandes volúmenes",
+      "benefit2": "Tarifas competitivas"
+    },
+    "special": {
+      "title": "Servicios Especializados",
+      "storage": "Almacenamiento",
+      "storage_desc": "Soluciones seguras de almacenamiento a corto y largo plazo.",
+      "packaging": "Embalaje",
+      "packaging_desc": "Embalaje profesional para máxima protección durante el transporte.",
+      "air_customs": "Trámites Aduanales Aéreos",
+      "air_customs_desc": "Gestión ágil de trámites aduaneros para envíos aéreos.",
+      "sea_customs": "Trámites Aduanales Marítimos",
+      "sea_customs_desc": "Gestión experta de aduanas para transporte marítimo."
+    },
+    "cta": "Solicitar cotización"
   }
 }
