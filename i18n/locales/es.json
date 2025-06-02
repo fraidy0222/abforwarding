@@ -8,8 +8,28 @@
   },
   "hero": {
     "tagline": "Envíos Globales",
-    "title": "Conectamos tu negocio con el mundo",
+    "title": "Reliable tu negocio con el mundo",
     "description": "Envíos rápidos y seguros a cualquier destino. Nuestra red logística garantiza entregas puntuales con tecnología de seguimiento en tiempo real. ¡Tu paquete en las mejores manos!",
+    "cta_contact": "Contáctenos",
+    "join": " Únete a nuestra comunidad",
+    "hastag1": "#EnvíosSeguros",
+    "hastag2": "#PaqueteríaExpress",
+    "hastag3": "#EnvíosInternacionales",
+    "hastag4": "#LatinoaméricaExpress"
+  },
+  "about": {
+    "years_experience": "años de experiencia",
+    "slogan": "Rápidos Seguros Confiables",
+    "description": "Con más de 29 años de experiencia en el mercado, nos especializamos en el transporte y logística internacional de paquetería, garantizando entregas puntuales y seguras en todo el mundo.",
+    "restrictions_title": "¿Tienen restricciones?",
+    "restrictions_text": "Para información sobre restricciones...",
+    "customs_link": "www.customs.gov",
+    "cta_services": "Nuestros servicios",
+    "benefits_title": "¿Por qué elegirnos?",
+    "benefit_1": "Trayectoria de 29 años en el sector logístico",
+    "benefit_2": "Red global de partners confiables",
+    "benefit_3": "Tecnología de seguimiento en tiempo real",
+    "benefit_4": "Soporte personalizado 24/7",
     "cta_contact": "Contáctenos"
   }
 }

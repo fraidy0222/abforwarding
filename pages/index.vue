@@ -1,6 +1,7 @@
 <template>
   <div>
     <AppHero />
+    <AppAbout />
     <AppFooter />
   </div>
 </template>
