@@ -2,6 +2,7 @@
   <div>
     <AppHero />
     <AppAbout />
+    <AppServices />
     <AppFooter />
   </div>
 </template>
