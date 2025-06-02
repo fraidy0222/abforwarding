@@ -23,6 +23,7 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: "i18n_redirected",
     },
+    baseUrl: "http://localhost:3000", // Ajusta según tu entorno
     lazy: true,
     locales: [
       { code: "es", name: "Español", file: "es.json" },
