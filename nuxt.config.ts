@@ -16,6 +16,9 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
   ],
 
+  image: {
+    provider: "static",
+  },
   i18n: {
     defaultLocale: "es",
     strategy: "prefix_except_default",
