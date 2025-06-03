@@ -18,14 +18,13 @@ const navLinks = computed(() => [
     <div class="flex justify-between items-center h-16 px-12">
       <!-- Logo (sin cambios) -->
       <NuxtLink :to="localePath('/')" class="flex items-center">
-        <ClientOnly>
-          <NuxtImg
+        <!-- <NuxtImg
             loading="lazy"
             src="/images/logo.png"
             alt="AB Forwarding"
             class="h-12"
-          />
-        </ClientOnly>
+          /> -->
+        <img src="/images/logo.png" alt="AB Forwarding" class="h-12" />
       </NuxtLink>
 
       <!-- Navegación - Mismos links pero con nuevos estilos -->
