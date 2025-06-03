@@ -3,6 +3,7 @@
     <AppHero />
     <AppAbout />
     <AppServices />
+    <AppSucursales />
     <AppFooter />
   </div>
 </template>
