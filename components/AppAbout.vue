@@ -9,7 +9,12 @@
           <div
             class="relative rounded-2xl overflow-hidden shadow-2xl h-80 md:h-96 lg:h-[500px]"
           >
-            <NuxtImg
+            <!-- <NuxtImg
+              src="/images/about/nordwind-plane.jpg"
+              alt="Equipo de ABForwarding Rus"
+              class="w-full h-full object-cover object-center"
+            /> -->
+            <img
               src="/images/about/nordwind-plane.jpg"
               alt="Equipo de ABForwarding Rus"
               class="w-full h-full object-cover object-center"

@@ -17,11 +17,16 @@ const navLinks = computed(() => [
   <header class="bg-white sticky inset-0 z-50 shadow-md lg:hidden">
     <div class="px-4 py-3 flex justify-between items-center">
       <NuxtLink :to="localePath('/')" class="flex items-center">
-        <NuxtImg
+        <!-- <NuxtImg
           loading="lazy"
           src="/images/logo.png"
           alt="AB Forwarding"
           class="h-12"
+        /> -->
+        <img
+          src="/images/about/nordwind-plane.jpg"
+          alt="Equipo de ABForwarding Rus"
+          class="w-full h-full object-cover object-center"
         />
       </NuxtLink>
 

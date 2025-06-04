@@ -28,13 +28,6 @@ export default defineNuxtConfig({
     dir: "public",
   },
 
-  // app: {
-  //   baseURL: "https://github.com/fraidy0222/abforwarding.git",
-  // },
-
-  // nitro: {
-  //   externals: {},
-  // },
   i18n: {
     defaultLocale: "es",
     strategy: "prefix_except_default",
@@ -42,7 +35,6 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: "i18n_redirected",
     },
-    baseUrl: "http://localhost:3000", // Ajusta según tu entorno
     lazy: true,
     locales: [
       { code: "es", name: "Español", file: "es.json" },
