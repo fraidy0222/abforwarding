@@ -16,17 +16,17 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxtjs/i18n",
   ],
-  vite: {
-    base: "/",
-    build: {
-      sourcemap: false,
-    },
-  },
+  // vite: {
+  //   base: "/",
+  //   build: {
+  //     sourcemap: false,
+  //   },
+  // },
 
   // Configuración de @nuxt/image (si lo usas)
-  image: {
-    dir: "public",
-  },
+  // image: {
+  //   dir: "public",
+  // },
 
   i18n: {
     defaultLocale: "es",
