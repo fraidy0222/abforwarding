@@ -5,34 +5,34 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 jobs:
   build-and-deploy:
-    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    
+
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # Versión actualizada
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: "yarn"
 
       - name: Install dependencies 🔧
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Build project 🏗️
-        run: yarn run generate
+        run: yarn generate
         env:
-          NUXT_APP_BASE_URL: ${{ vars.NUXT_APP_BASE_URL }}
+          NUXT_APP_BASE_URL: ${{ vars.NUXT_APP_BASE_URL }} # Ajusta según necesites
 
       - name: Verify dist folder 🕵️
         run: |
@@ -43,9 +43,9 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v2 # Acción CORRECTA para Pages
         with:
-          path: dist
+          path: "dist" # Ruta de tu carpeta generada
 
       - name: Deploy to GitHub Pages 🚀
         id: deployment
