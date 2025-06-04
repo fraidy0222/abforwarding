@@ -4,7 +4,7 @@
     <AppAbout />
     <AppServices />
     <AppSucursales />
-    <AppFooter />
+    <!-- <AppFooter /> -->
   </div>
 </template>
 
