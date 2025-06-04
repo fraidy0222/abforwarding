@@ -1,8 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // app: {
-  //   baseURL: process.env.NODE_ENV === "production" ? "/" : "/",
-  // },
+  ssr: false,
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
