@@ -24,9 +24,9 @@ const navLinks = computed(() => [
           class="h-12"
         /> -->
         <img
-          src="/images/about/nordwind-plane.jpg"
+          src="/images/logo.png"
           alt="Equipo de ABForwarding Rus"
-          class="w-full h-full object-cover object-center"
+          class="h-12 object-cover object-center"
         />
       </NuxtLink>
 
