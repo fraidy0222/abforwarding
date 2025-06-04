@@ -34,7 +34,7 @@ const localePath = useLocalePath();
           <div class="flex flex-wrap">
             <UButton
               :to="localePath('/contacto')"
-              icon="i-lucide-rocket"
+              icon="i-lucide-mail"
               class="min-w-42 max-w-full flex items-center justify-center rounded-full whitespace-nowrap overflow-hidden text-ellipsis"
               size="xl"
             >
