@@ -3,23 +3,28 @@ on:
   push:
     branches:
       - main
+
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20]
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
 
       - name: Install dependencies 🔧
         run: yarn install
@@ -34,12 +39,14 @@ jobs:
           ls -la dist
           [ -d dist ] || exit 1
 
-      - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          branch: gh-pages # La rama donde se publicará
-          folder: dist # Carpeta que contiene los archivos generados
-          # token: ${{ secrets.GITHUB_TOKEN }}
-          clean: true # Limpia los archivos existentes en la rama de despliegue
-          single-commit: true # Crea un único commit en la rama de despliegue
-          commit-message: "Deploy: ${{ github.sha }}" # Mensaje del commit
+          path: dist
+
+      - name: Deploy to GitHub Pages 🚀
+        id: deployment
+        uses: actions/deploy-pages@v2
