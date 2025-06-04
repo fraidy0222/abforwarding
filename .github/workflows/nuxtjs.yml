@@ -12,9 +12,9 @@ jobs:
         with:
           node-version: "20"
       - run: yarn
-      - run: npx nuxt build --preset github_pages
-      - name: Listar archivos generados
-        run: ls -R .output/public # Verifica que los archivos estén ahí
+      - run: npx nuxt build --preset github_pages --base=/abforwarding/
+      - name: Copiar 404.html para SPA
+        run: cp static/404.html .output/public/404.html
       - name: Subir artefacto
         uses: actions/upload-pages-artifact@v3
         with:

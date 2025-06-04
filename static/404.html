@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      sessionStorage.redirect = location.pathname;
+      location.href =
+        "/abforwarding" +
+        (location.pathname.startsWith("/abforwarding")
+          ? ""
+          : location.pathname);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
