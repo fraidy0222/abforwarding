@@ -6,6 +6,7 @@ export default defineNuxtConfig({
 
   ui: {
     colorMode: false,
+    fonts: false,
   },
   modules: [
     "@nuxt/eslint",
@@ -15,6 +16,25 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxtjs/i18n",
   ],
+  vite: {
+    base: "/",
+    build: {
+      sourcemap: false,
+    },
+  },
+
+  // Configuración de @nuxt/image (si lo usas)
+  image: {
+    dir: "public",
+  },
+
+  // app: {
+  //   baseURL: "https://github.com/fraidy0222/abforwarding.git",
+  // },
+
+  // nitro: {
+  //   externals: {},
+  // },
   i18n: {
     defaultLocale: "es",
     strategy: "prefix_except_default",
