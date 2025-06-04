@@ -6,7 +6,7 @@
         <h2
           class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
         >
-          {{ $t("branches.title") || "Nuestras Sucursales Globales" }}
+          {{ $t("sucursales.title") || "Nuestras Sucursales Globales" }}
         </h2>
         <div class="flex justify-center">
           <div class="h-1 w-24 bg-secondary rounded-full"></div>

@@ -59,5 +59,8 @@
       "sea_customs_desc": "Gestión experta de aduanas para transporte marítimo."
     },
     "cta": "Solicitar cotización"
+  },
+  "sucursales": {
+    "title": "Nuestras Sucursales Globales"
   }
 }
