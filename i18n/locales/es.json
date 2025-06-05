@@ -80,6 +80,15 @@
     "faq3": {
       "question": "¿Qué certificaciónes poseen?",
       "answer": "Estamos certificados por varias instituciones que acreditan la calidad de nuestro servicio: IATA, FIATA, CIFFA, NVOCC, Partners in Protection y Transport Canada."
+    },
+    "faq4": {
+      "question": "¿Ofrecen servicios de embalaje y almacenamiento?",
+      "answer": "Sí, contamos con servicios profesionales de embalaje industrial y almacenamiento seguro en nuestras instalaciones aduaneras.",
+      "additional": {
+        "additional1": "Embalaje certificado para transporte internacional",
+        "additional2": "Almacenes con control climático",
+        "additional3": "Seguro incluido en todos nuestros paquetes"
+      }
     }
   }
 }

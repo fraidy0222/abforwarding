@@ -103,33 +103,50 @@ const faqItems = [
     content: t("faq.faq1.answer"),
   },
   {
-    label: "¿Cómo puedo rastrear mi paquete?",
-    content:
-      "Todos nuestros envíos incluyen un número de seguimiento que podrás ingresar en nuestra plataforma online para conocer el estado en tiempo real.",
+    label: t("faq.faq2.question"),
+    content: t("faq.faq2.answer"),
+  },
+  {
+    label: t("faq.faq3.question"),
+    content: t("faq.faq3.answer"),
+  },
+  {
+    label: t("faq.faq4.question"),
+    content: t("faq.faq4.answer"),
     additional: [
-      "Notificaciones por email en cada actualización",
-      "Soporte telefónico para consultas específicas",
+      t("faq.faq4.additional.additional1"),
+      t("faq.faq4.additional.additional2"),
+      t("faq.faq4.additional.additional3"),
     ],
   },
-  {
-    label: "¿Tienen restricciones para ciertos productos?",
-    content:
-      "Sí, seguimos las regulaciones internacionales para el transporte de mercancías. Los productos peligrosos, perecederos o restringidos requieren autorización previa.",
-  },
-  {
-    label: "¿Cuáles son sus horarios de atención?",
-    content:
-      "Nuestro centro de atención al cliente está disponible de lunes a viernes de 8:00 a 18:00 (GMT-5), con soporte de emergencias 24/7 para clientes prioritarios.",
-  },
-  {
-    label: "¿Ofrecen servicios de embalaje y almacenamiento?",
-    content:
-      "Sí, contamos con servicios profesionales de embalaje industrial y almacenamiento seguro en nuestras instalaciones aduaneras.",
-    additional: [
-      "Embalaje certificado para transporte internacional",
-      "Almacenes con control climático",
-      "Seguro incluido en todos nuestros paquetes",
-    ],
-  },
+  //   {
+  //     label: "¿Cómo puedo rastrear mi paquete?",
+  //     content:
+  //       "Todos nuestros envíos incluyen un número de seguimiento que podrás ingresar en nuestra plataforma online para conocer el estado en tiempo real.",
+  //     additional: [
+  //       "Notificaciones por email en cada actualización",
+  //       "Soporte telefónico para consultas específicas",
+  //     ],
+  //   },
+  //   {
+  //     label: "¿Tienen restricciones para ciertos productos?",
+  //     content:
+  //       "Sí, seguimos las regulaciones internacionales para el transporte de mercancías. Los productos peligrosos, perecederos o restringidos requieren autorización previa.",
+  //   },
+  //   {
+  //     label: "¿Cuáles son sus horarios de atención?",
+  //     content:
+  //       "Nuestro centro de atención al cliente está disponible de lunes a viernes de 8:00 a 18:00 (GMT-5), con soporte de emergencias 24/7 para clientes prioritarios.",
+  //   },
+  //   {
+  //     label: "¿Ofrecen servicios de embalaje y almacenamiento?",
+  //     content:
+  //       "Sí, contamos con servicios profesionales de embalaje industrial y almacenamiento seguro en nuestras instalaciones aduaneras.",
+  //     additional: [
+  //       "Embalaje certificado para transporte internacional",
+  //       "Almacenes con control climático",
+  //       "Seguro incluido en todos nuestros paquetes",
+  //     ],
+  //   },
 ];
 </script>
