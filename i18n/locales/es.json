@@ -116,5 +116,35 @@
       "tracking": "Seguimiento de paquete",
       "other": "Otro asunto"
     }
+  },
+
+  "terms": {
+    "title": "Términos y Condiciones",
+    "lastUpdate": "Última actualización:",
+    "sections": {
+      "dataProtection": {
+        "title": "Protección de Datos",
+        "content": "AB Forwarding está comprometido con la protección de la privacidad de nuestros usuarios. Buscamos proporcionar una experiencia segura y protegida.",
+        "highlight": "Tu información está segura: No vendemos ni compartiremos tus datos personales sin tu consentimiento explícito."
+      },
+      "infoDisclosure": {
+        "title": "Divulgación de Información",
+        "points": {
+          "point1": "No compartimos datos de visitas o información personal (nombre, email, teléfono) con terceros",
+          "point2": "Excepciones aplican solo cuando lo requiera la ley",
+          "point3": "Limitaciones inherentes a tecnologías de Internet están fuera de nuestro control"
+        }
+      },
+      "legalAspects": {
+        "title": "Aspectos Legales",
+        "content": "Todas las transacciones se rigen por las {CIFFA}, que incluyen:",
+        "CIFFA": "Condiciones Comerciales Estándar de CIFFA",
+        "points": {
+          "point1": "Limitaciones de responsabilidad",
+          "point2": "Cláusulas de indemnización",
+          "point3": "Condiciones para Conocimientos de Embarque Negociables (BL)"
+        }
+      }
+    }
   }
 }
