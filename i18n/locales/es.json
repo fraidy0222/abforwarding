@@ -63,5 +63,23 @@
   "sucursales": {
     "title": "Nuestras Sucursales Globales",
     "subtitle": "Más de 50 sucursales estratégicamente ubicadas en 5 continentes"
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Encuentra respuestas a las dudas más comunes sobre nuestros servicios logísticos",
+    "cta_text": "¿No encontraste lo que buscabas?",
+    "cta_button": "Contáctanos",
+    "faq1": {
+      "question": "¿Qué servicios ofrecen?",
+      "answer": "Ofrecemos una amplia gama de servicios logísticos que incluyen envíos marítimos y aéreos, gestión de seguros, almacenaje, consolidación de carga, servicios de embalaje, asesoría en documentación para importación y exportación, así como servicios de recogida y entrega de mercancía. Colaboramos con empresas de distintos tamaños, desde micro, pequeñas y medianas empresas (MYPIMES), trabajadores cuenta propistas (TPCs) hasta grandes corporaciones, para proporcionar soluciones logísticas confiables y adaptadas a las necesidades específicas de cada compañía."
+    },
+    "faq2": {
+      "question": "¿En qué países se encuentran?",
+      "answer": "Tenemos oficinas y almacenes propios en Rusia, Canadá, China, España, México, Brasil y Panamá. Llegamos a todo el mundo a través de nuestros agentes asociados."
+    },
+    "faq3": {
+      "question": "¿Qué certificaciónes poseen?",
+      "answer": "Estamos certificados por varias instituciones que acreditan la calidad de nuestro servicio: IATA, FIATA, CIFFA, NVOCC, Partners in Protection y Transport Canada."
+    }
   }
 }
