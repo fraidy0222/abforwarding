@@ -142,9 +142,10 @@
           </div>
 
           <!-- Botón CTA -->
+
           <NuxtLink
             :to="localePath('/contacto')"
-            class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary-dark transition-colors duration-300"
+            class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-primary hover:bg-primary-dark transition-colors duration-300"
           >
             {{ $t("about.cta_contact") || "Contáctenos" }}
             <svg
