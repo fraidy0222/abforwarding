@@ -90,5 +90,31 @@
         "additional3": "Seguro incluido en todos nuestros paquetes"
       }
     }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "Completa el formulario y nos pondremos en contacto contigo",
+    "info_title": "Información de contacto",
+    "phone": "Teléfono",
+    "email": "Email",
+    "address": "Dirección",
+    "hours_title": "Horario de atención",
+    "weekdays": "Lunes a Viernes",
+    "saturday": "Sábado",
+    "sunday": "Domingo",
+    "form_title": "Envíanos un mensaje",
+    "form_name": "Nombre completo",
+    "form_email": "Email",
+    "form_phone": "Teléfono",
+    "form_subject": "Asunto",
+    "form_message": "Mensaje",
+    "form_agree": "Acepto la política de privacidad",
+    "form_submit": "Enviar mensaje",
+    "subjects": {
+      "shipping": "Consulta sobre envíos",
+      "quote": "Solicitud de cotización",
+      "tracking": "Seguimiento de paquete",
+      "other": "Otro asunto"
+    }
   }
 }
