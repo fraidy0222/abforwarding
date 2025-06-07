@@ -1,23 +1,38 @@
 <template>
-  <section id="services" class="relative bg-white py-12 md:py-18 lg:py-24">
+  <section
+    id="services"
+    ref="servicesSection"
+    class="relative bg-white py-12 md:py-18 lg:py-24"
+  >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Encabezado mejorado -->
-      <div class="text-center mb-16">
+      <div ref="header" class="text-center mb-16">
         <span
+          ref="badge"
           class="inline-block px-3 py-1 text-sm font-semibold text-secondary-800 bg-secondary-100 rounded-full mb-4"
         >
           {{ $t("services.subtitle") || "Soluciones logísticas" }}
         </span>
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <h2
+          ref="title"
+          class="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+        >
           {{ $t("services.title") || "Nuestros Servicios" }}
         </h2>
-        <div class="mx-auto h-1 w-24 bg-secondary rounded-full"></div>
+        <div
+          ref="divider"
+          class="mx-auto h-1 w-24 bg-secondary rounded-full"
+        ></div>
       </div>
 
       <!-- Servicios principales - Diseño mejorado -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+      <div
+        ref="mainServices"
+        class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"
+      >
         <!-- Envío Aéreo -->
         <div
+          ref="airService"
           class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl"
         >
           <div
@@ -94,6 +109,7 @@
 
         <!-- Envío Marítimo -->
         <div
+          ref="seaService"
           class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl"
         >
           <div
@@ -179,13 +195,17 @@
 
       <!-- Servicios especializados - Diseño de tarjetas mejorado -->
       <div class="text-center mb-16">
-        <h3 class="text-3xl font-semibold text-gray-900 mb-12">
+        <h3
+          ref="specialTitle"
+          class="text-3xl font-semibold text-gray-900 mb-12"
+        >
           {{ $t("services.special.title") || "Servicios Complementarios" }}
         </h3>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <!-- Almacenamiento -->
           <div
+            ref="storageService"
             class="bg-white p-8 rounded-xl border border-gray-100 hover:border-secondary/50 transition-all duration-300 shadow-sm hover:shadow-md"
           >
             <div
@@ -220,6 +240,7 @@
 
           <!-- Embalaje -->
           <div
+            ref="packagingService"
             class="bg-white p-8 rounded-xl border border-gray-100 hover:border-secondary/50 transition-all duration-300 shadow-sm hover:shadow-md"
           >
             <div
@@ -254,6 +275,7 @@
 
           <!-- Aduanas Aéreas -->
           <div
+            ref="airCustomsService"
             class="bg-white p-8 rounded-xl border border-gray-100 hover:border-secondary/50 transition-all duration-300 shadow-sm hover:shadow-md"
           >
             <div
@@ -288,6 +310,7 @@
 
           <!-- Aduanas Marítimas -->
           <div
+            ref="seaCustomsService"
             class="bg-white p-8 rounded-xl border border-gray-100 hover:border-secondary/50 transition-all duration-300 shadow-sm hover:shadow-md"
           >
             <div
@@ -321,32 +344,133 @@
           </div>
         </div>
       </div>
-
-      <!-- CTA mejorado -->
-      <!-- <div class="text-center">
-        <NuxtLink
-          :to="localePath('/contacto')"
-          class="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-xl shadow-lg text-white bg-gradient-to-r from-secondary-500 to-secondary-600 hover:bg-gradient-to-r hover:from-secondary-600 hover:to-secondary-500 transition-all duration-300 transform hover:scale-[1.02]"
-        >
-          {{ $t("services.cta") || "Solicitar cotización personalizada" }}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 ml-2"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </NuxtLink>
-      </div> -->
     </div>
   </section>
 </template>
 
 <script setup>
-// const localePath = useLocalePath();
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Registrar plugins
+gsap.registerPlugin(ScrollTrigger);
+
+// 1. Referencias directas (sin cambiar tu template)
+const servicesSection = ref(null);
+const badge = ref(null);
+const title = ref(null);
+const divider = ref(null);
+const specialTitle = ref(null);
+const airService = ref(null);
+const seaService = ref(null);
+const storageService = ref(null);
+const packagingService = ref(null);
+const airCustomsService = ref(null);
+const seaCustomsService = ref(null);
+
+// 2. Animaciones mejoradas y seguras
+const initAnimations = () => {
+  // Configuración global
+  gsap.defaults({ ease: "power3.out" });
+
+  // A. Animación del encabezado
+  if (badge.value && title.value && divider.value) {
+    gsap.from([badge.value, title.value, divider.value], {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: servicesSection.value,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+  }
+
+  // B. Animación servicios principales con verificación
+  const animateService = (element, delay = 0) => {
+    if (!element) return;
+
+    gsap.from(element, {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      delay,
+      scrollTrigger: {
+        trigger: element,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+  };
+
+  animateService(airService.value);
+  animateService(seaService.value, 0.2);
+
+  // C. Animación servicios especializados
+  const specialServices = [
+    { ref: storageService, delay: 0 },
+    { ref: packagingService, delay: 0.1 },
+    { ref: airCustomsService, delay: 0.2 },
+    { ref: seaCustomsService, delay: 0.3 },
+  ];
+
+  specialServices.forEach(({ ref, delay }) => {
+    if (ref.value) {
+      gsap.from(ref.value, {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        delay,
+        scrollTrigger: {
+          trigger: ref.value,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+  });
+
+  // D. Efectos hover mejorados
+  const setupHover = (element) => {
+    if (!element) return;
+
+    const hoverTL = gsap.timeline({ paused: true }).to(element, {
+      y: -5,
+      duration: 0.2,
+    });
+
+    element.addEventListener("mouseenter", () => hoverTL.play());
+    element.addEventListener("mouseleave", () => hoverTL.reverse());
+  };
+
+  // Aplicar a todos los servicios
+  [
+    airService.value,
+    seaService.value,
+    storageService.value,
+    packagingService.value,
+    airCustomsService.value,
+    seaCustomsService.value,
+  ].forEach(setupHover);
+};
+
+// 3. Inicialización controlada
+onMounted(() => {
+  // Pequeño delay para asegurar que el DOM está listo
+  setTimeout(() => {
+    initAnimations();
+
+    // Recalcular en caso de cambios (opcional)
+    window.addEventListener("resize", ScrollTrigger.refresh);
+  }, 100);
+});
+
+// 4. Limpieza
+onBeforeUnmount(() => {
+  ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  window.removeEventListener("resize", ScrollTrigger.refresh);
+});
 </script>
