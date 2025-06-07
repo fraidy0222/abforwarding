@@ -2,7 +2,7 @@
   <section
     id="services"
     ref="servicesSection"
-    class="relative bg-white py-12 md:py-18 lg:py-24"
+    class="relative bg-white py-12 md:py-18 lg:py-12"
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Encabezado mejorado -->
@@ -376,17 +376,30 @@ const initAnimations = () => {
 
   // A. Animación del encabezado
   if (badge.value && title.value && divider.value) {
-    gsap.from([badge.value, title.value, divider.value], {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
+    const contentTL = gsap.timeline({
       scrollTrigger: {
-        trigger: servicesSection.value,
+        trigger: badge.value,
         start: "top 80%",
         toggleActions: "play none none none",
       },
     });
+
+    contentTL
+      .from([badge.value, title.value], {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.3,
+      })
+      .from(
+        divider.value,
+        {
+          scale: 0,
+          transformOrigin: "center",
+          duration: 0.6,
+        },
+        "-=0.3"
+      );
   }
 
   // B. Animación servicios principales con verificación
@@ -408,6 +421,7 @@ const initAnimations = () => {
 
   animateService(airService.value);
   animateService(seaService.value, 0.2);
+  animateService(specialTitle.value, 0.4);
 
   // C. Animación servicios especializados
   const specialServices = [

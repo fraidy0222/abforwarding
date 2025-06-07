@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gray-50 py-16 md:py-8">
+  <section class="bg-gray-50 py-16 md:py-12">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Encabezado -->
       <div class="text-center mb-16">

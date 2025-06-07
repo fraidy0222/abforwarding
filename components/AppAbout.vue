@@ -97,7 +97,7 @@
                 class="flex items-start"
               >
                 <svg
-                  class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  class="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
