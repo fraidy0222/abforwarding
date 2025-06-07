@@ -37,7 +37,7 @@
                   <h4 class="text-lg font-medium text-gray-900 mb-1">
                     {{ $t("contact.phone") || "Teléfono" }}
                   </h4>
-                  <p class="text-gray-600">+1 (305) 123-4567</p>
+                  <p class="text-gray-600">+7 966-193-20-11</p>
                 </div>
               </div>
 
@@ -52,7 +52,7 @@
                   <h4 class="text-lg font-medium text-gray-900 mb-1">
                     {{ $t("contact.email") || "Email" }}
                   </h4>
-                  <p class="text-gray-600">contacto@abforwarding.com</p>
+                  <p class="text-gray-600">sales@abforwarding.ru</p>
                 </div>
               </div>
 
@@ -68,7 +68,7 @@
                     {{ $t("contact.address") || "Dirección" }}
                   </h4>
                   <p class="text-gray-600">
-                    1234 Logistics Ave, Miami, FL 33166
+                    Perervinskii B-R,D.19, C.1, E.1, P.Iii Moscow, Russia
                   </p>
                 </div>
               </div>
@@ -83,23 +83,15 @@
             <ul class="space-y-3">
               <li class="flex justify-between">
                 <span class="text-gray-600">{{
-                  $t("contact.weekdays") || "Lunes a Viernes"
+                  $t("contact.weekdays") || "Lunes a Sábado"
                 }}</span>
-                <span class="font-medium text-gray-900">8:00 - 18:00</span>
-              </li>
-              <li class="flex justify-between">
-                <span class="text-gray-600">{{
-                  $t("contact.saturday") || "Sábado"
-                }}</span>
-                <span class="font-medium text-gray-900">9:00 - 14:00</span>
+                <span class="font-medium text-gray-900">9:00 - 19:00</span>
               </li>
               <li class="flex justify-between">
                 <span class="text-gray-600">{{
                   $t("contact.sunday") || "Domingo"
                 }}</span>
-                <span class="font-medium text-gray-900">{{
-                  $t("contact.status") || "Cerrado"
-                }}</span>
+                <span class="font-medium text-gray-900">9:00 - 15:00</span>
               </li>
             </ul>
           </div>
