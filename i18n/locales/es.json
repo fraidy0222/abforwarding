@@ -102,6 +102,7 @@
     "weekdays": "Lunes a Viernes",
     "saturday": "Sábado",
     "sunday": "Domingo",
+    "status": "Cerrado",
     "form_title": "Envíanos un mensaje",
     "form_name": "Nombre completo",
     "form_email": "Email",
@@ -109,6 +110,7 @@
     "form_subject": "Asunto",
     "form_message": "Mensaje",
     "form_agree": "Acepto la política de privacidad",
+    "form_terms": "Términos y Condiciones",
     "form_submit": "Enviar mensaje",
     "subjects": {
       "shipping": "Consulta sobre envíos",
