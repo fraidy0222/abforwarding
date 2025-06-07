@@ -97,7 +97,9 @@
                 <span class="text-gray-600">{{
                   $t("contact.sunday") || "Domingo"
                 }}</span>
-                <span class="font-medium text-gray-900">Cerrado</span>
+                <span class="font-medium text-gray-900">{{
+                  $t("contact.status") || "Cerrado"
+                }}</span>
               </li>
             </ul>
           </div>
@@ -186,7 +188,7 @@
             >
               <UTextarea
                 v-model="form.message"
-                rows="5"
+                :rows="5"
                 class="w-full"
                 :ui="{
                   rounded: 'rounded-lg',
@@ -212,7 +214,9 @@
               <NuxtLink
                 :to="localePath('/terms')"
                 class="underline underline-offset-3 text-medium hover:text-primary"
-                >Términos y Condiciones</NuxtLink
+                >{{
+                  $t("contact.form_terms") || "Términos y Condiciones"
+                }}</NuxtLink
               >
             </div>
 
