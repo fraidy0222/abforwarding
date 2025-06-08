@@ -1,12 +1,15 @@
 <template>
-  <section class="bg-gray-50 py-16 md:py-12">
+  <section ref="faqSection" class="bg-gray-50 py-16 md:py-12">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Encabezado -->
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+      <div ref="faqHeader" class="text-center mb-16">
+        <h2
+          ref="faqTitle"
+          class="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+        >
           {{ $t("faq.title") || "Preguntas Frecuentes" }}
         </h2>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        <p ref="faqSubtitle" class="text-xl text-gray-600 max-w-2xl mx-auto">
           {{
             $t("faq.subtitle") ||
             "Encuentra respuestas a las dudas más comunes sobre nuestros servicios logísticos"
@@ -15,8 +18,9 @@
       </div>
 
       <!-- Contenedor de preguntas -->
-      <div class="max-w-4xl mx-auto">
+      <div ref="faqContainer" class="max-w-4xl mx-auto">
         <UAccordion
+          ref="faqAccordion"
           :items="faqItems"
           variant="outline"
           :ui="{
@@ -62,31 +66,33 @@
         </UAccordion>
 
         <!-- CTA -->
-        <div class="text-center mt-12">
+        <div ref="faqCta" class="text-center mt-12">
           <p class="text-gray-600 mb-6">
             {{ $t("faq.cta_text") || "¿No encontraste lo que buscabas?" }}
           </p>
-          <NuxtLink
-            :to="localePath('/contacto')"
-            class="inline-flex items-center px-6 py-3 borde rounded-full border-transparent text-base font-medium shadow-sm text-white bg-primary hover:bg-primary-dark transition-colors duration-300"
-          >
-            {{ $t("faq.cta_button") || "Contáctanos" }}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-mail-icon lucide-mail ml-3"
+          <div ref="faqButton" class="inline-flex">
+            <NuxtLink
+              :to="localePath('/contacto')"
+              class="inline-flex items-center px-6 py-3 borde rounded-full border-transparent text-base font-medium shadow-sm text-white bg-primary hover:bg-primary-dark transition-colors duration-300"
             >
-              <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-            </svg>
-          </NuxtLink>
+              {{ $t("faq.cta_button") || "Contáctanos" }}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-mail-icon lucide-mail ml-3"
+              >
+                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+              </svg>
+            </NuxtLink>
+          </div>
         </div>
       </div>
     </div>
@@ -94,8 +100,23 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const { t } = useI18n();
 const localePath = useLocalePath();
+
+const faqSection = ref(null);
+const faqHeader = ref(null);
+const faqTitle = ref(null);
+const faqSubtitle = ref(null);
+const faqContainer = ref(null);
+const faqCta = ref(null);
+const faqButton = ref(null);
+const faqAccordion = ref(null);
 
 const faqItems = [
   {
@@ -119,34 +140,75 @@ const faqItems = [
       t("faq.faq4.additional.additional3"),
     ],
   },
-  //   {
-  //     label: "¿Cómo puedo rastrear mi paquete?",
-  //     content:
-  //       "Todos nuestros envíos incluyen un número de seguimiento que podrás ingresar en nuestra plataforma online para conocer el estado en tiempo real.",
-  //     additional: [
-  //       "Notificaciones por email en cada actualización",
-  //       "Soporte telefónico para consultas específicas",
-  //     ],
-  //   },
-  //   {
-  //     label: "¿Tienen restricciones para ciertos productos?",
-  //     content:
-  //       "Sí, seguimos las regulaciones internacionales para el transporte de mercancías. Los productos peligrosos, perecederos o restringidos requieren autorización previa.",
-  //   },
-  //   {
-  //     label: "¿Cuáles son sus horarios de atención?",
-  //     content:
-  //       "Nuestro centro de atención al cliente está disponible de lunes a viernes de 8:00 a 18:00 (GMT-5), con soporte de emergencias 24/7 para clientes prioritarios.",
-  //   },
-  //   {
-  //     label: "¿Ofrecen servicios de embalaje y almacenamiento?",
-  //     content:
-  //       "Sí, contamos con servicios profesionales de embalaje industrial y almacenamiento seguro en nuestras instalaciones aduaneras.",
-  //     additional: [
-  //       "Embalaje certificado para transporte internacional",
-  //       "Almacenes con control climático",
-  //       "Seguro incluido en todos nuestros paquetes",
-  //     ],
-  //   },
 ];
+const initiAnimations = () => {
+  gsap.defaults({ ease: "power3.out" });
+
+  gsap.from([faqTitle.value, faqSubtitle.value], {
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: faqHeader.value,
+      start: "top 80%",
+    },
+  });
+
+  // Animación del contenedor de preguntas
+
+  const contenTL = gsap.timeline({
+    scrollTrigger: {
+      trigger: faqContainer.value,
+      start: "top 80%",
+    },
+  });
+  contenTL
+    .from(faqContainer.value, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      delay: 0.2,
+    })
+    .from([faqCta.value, faqButton.value], {
+      y: 30,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: "back.out(1.2)",
+    });
+
+  // Efecto hover para los items del acordeón
+  const setupAccordionHover = () => {
+    const items = faqAccordion.value?.$el?.querySelectorAll(
+      "[data-radix-accordion-item]"
+    );
+    if (items) {
+      items.forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+          gsap.to(item, {
+            y: -3,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+        item.addEventListener("mouseleave", () => {
+          gsap.to(item, {
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+      });
+    }
+  };
+
+  // Pequeño delay para asegurar que el acordeón está renderizado
+  setTimeout(setupAccordionHover, 300);
+};
+
+onMounted(() => {
+  initiAnimations();
+});
 </script>
