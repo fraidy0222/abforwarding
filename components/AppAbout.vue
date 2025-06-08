@@ -2,7 +2,7 @@
   <section
     id="about"
     ref="aboutSection"
-    class="relative bg-white py-12 md:py-18 lg:py-24"
+    class="relative bg-white py-12 md:py-18 lg:py-22"
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

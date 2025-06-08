@@ -1,6 +1,4 @@
 <script setup>
-import { IconsYoutubeIcon } from "#components";
-
 const { t } = useI18n();
 const localePath = useLocalePath();
 </script>
@@ -25,21 +23,13 @@ const localePath = useLocalePath();
           >
             {{ t("hero.title") }}
           </h1>
-          <p class="text-white text-sm md:text-base w-full md:w-4/6">
+          <p class="text-white text-base md:text-lg w-full md:w-5/6">
             {{
               t("hero.description") ||
               "Lorem ipsum dolor sit amet consectetur adipisicing elit."
             }}
           </p>
           <div class="flex flex-wrap">
-            <!-- <UButton
-              :to="localePath('/contacto')"
-              icon="i-lucide-mail"
-              class="min-w-42 max-w-full flex items-center justify-center rounded-full whitespace-nowrap overflow-hidden text-ellipsis"
-              size="xl"
-            >
-              <span class="truncate">{{ t("hero.cta_contact") }}</span>
-            </UButton> -->
             <NuxtLink
               :to="localePath('/contacto')"
               class="inline-flex items-center px-6 py-3 borde rounded-full border-transparent text-base font-medium shadow-sm text-white bg-primary hover:bg-primary-dark transition-colors duration-300"
@@ -100,51 +90,43 @@ const localePath = useLocalePath();
         class="hidden md:block absolute bottom-6 right-6 z-20 w-[230px] bg-white/90 text-primary py-4 px-5 rounded-2xl shadow-lg backdrop-blur-sm border border-white/20"
       >
         <div class="flex flex-col items-start gap-y-2">
-          <div class="flex items-center gap-3">
+          <div class="flex items-center justify-between w-full gap-3">
             <div class="flex items-center gap-3 group">
               <a
                 href="#"
-                class="bg-gray-100 group-hover:bg-primary p-2 rounded-full transition-colors duration-200 shadow-sm"
+                class="bg-secondary/15 p-2.5 rounded-full transition-colors duration-200 shadow-sm"
               >
-                <IconsTwitterIcon
-                  class="h-4 w-4 text-secondary group-hover:text-white transition-colors duration-200"
+                <IconsTelegramIcon
+                  class="h-6 w-6 text-secondary transition-colors duration-200"
                 />
               </a>
             </div>
 
             <div class="flex items-center gap-3 group">
-              <a
-                href="#"
-                class="bg-gray-100 group-hover:bg-primary p-2 rounded-full transition-colors duration-200 shadow-sm"
+              <NuxtLink
+                target="_blank"
+                href="https://www.facebook.com/share/1CLUyJRx1n/"
+                class="bg-secondary/15 p-2.5 rounded-full transition-colors duration-200 shadow-sm"
               >
                 <IconsFacebookIcon
-                  class="h-4 w-4 text-secondary group-hover:text-white transition-colors duration-200"
+                  class="h-6 w-6 text-secondary transition-colors duration-200"
                 />
-              </a>
+              </NuxtLink>
             </div>
             <div class="flex items-center gap-3 group">
-              <a
-                href="#"
-                class="bg-gray-100 group-hover:bg-primary p-2 rounded-full transition-colors duration-200 shadow-sm"
+              <NuxtLink
+                target="_blank"
+                href="https://chat.whatsapp.com/EAtQiP8NN1zAp0NSqyhIc4"
+                class="bg-secondary/15 p-2.5 rounded-full transition-colors duration-200 shadow-sm"
               >
                 <IconsWhatsappIcon
-                  class="h-4 w-4 text-secondary group-hover:text-white transition-colors duration-200"
+                  class="h-5 w-5 text-secondary transition-colors duration-200"
                 />
-              </a>
-            </div>
-            <div class="flex items-center gap-3 group">
-              <a
-                href="#"
-                class="bg-gray-100 group-hover:bg-primary p-2 rounded-full transition-colors duration-200 shadow-sm"
-              >
-                <IconsYoutubeIcon
-                  class="h-4 w-4 text-secondary group-hover:text-white transition-colors duration-200"
-                />
-              </a>
+              </NuxtLink>
             </div>
           </div>
           <div
-            class="text-[0.95rem] font-semibold text-gray-700 group-hover:text-primary transition-colors duration-200"
+            class="text-[1.1rem] font-semibold text-gray-700 group-hover:text-primary transition-colors duration-200"
           >
             {{ $t("hero.join") }}
           </div>
