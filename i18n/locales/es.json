@@ -9,7 +9,7 @@
   "hero": {
     "tagline": "Envíos Globales",
     "title": "Conectamos su negocio con el mundo",
-    "description": "Envíos rápidos y seguros a cualquier destino dentro de Cuba. Nuestra red logística garantiza entregas puntuales con tecnología de seguimiento en tiempo real. ¡Tu paquete en las mejores manos!",
+    "description": "Envíos rápidos y seguros a cualquier destino dentro de Cuba. Nuestra red logística garantiza entregas puntuales. ¡Tu paquete en las mejores manos!",
     "cta_contact": "Contáctenos",
     "join": " Únete a nuestra comunidad",
     "hastag1": "#EnvíosSeguros",
@@ -30,7 +30,8 @@
     "benefit_2": "Red global de partners confiables",
     "benefit_3": "Tecnología de seguimiento en tiempo real",
     "benefit_4": "Soporte personalizado 24/7",
-    "cta_contact": "Contáctenos"
+    "cta_contact": "Contáctenos",
+    "calculate_price": "Calculadora de precio"
   },
   "services": {
     "title": "Nuestros Servicios",
@@ -62,7 +63,7 @@
   },
   "sucursales": {
     "title": "Nuestras Sucursales Globales",
-    "subtitle": "Más de 50 sucursales estratégicamente ubicadas en 5 continentes"
+    "subtitle": "Con 15 sucursales estratégicamente ubicadas en cerca de los aeropuertos y puertos internacionales"
   },
   "faq": {
     "title": "Preguntas Frecuentes",
@@ -98,6 +99,7 @@
     "phone": "Teléfono",
     "email": "Email",
     "address": "Dirección",
+    "direccion": "Metro LYUBLINO a 10 metros de la salida #2, Calle KRASNODARSKAYA 48, EDIFICIO 3",
     "hours_title": "Horario de atención",
     "weekdays": "Lunes a Sábado",
     "sunday": "Domingo",

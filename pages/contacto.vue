@@ -82,7 +82,7 @@
                     {{ $t("contact.address") || "Dirección" }}
                   </h4>
                   <p class="text-gray-600">
-                    Perervinskii B-R,D.19, C.1, E.1, P.Iii Moscow, Russia
+                    {{ $t("contact.direccion") }}
                   </p>
                 </div>
               </div>
@@ -216,7 +216,9 @@
               />
             </UFormField>
 
-            <div class="flex items-center justify-between">
+            <div
+              class="flex flex-col sm:flex-row items-start gap-y-4 sm:items-center justify-between"
+            >
               <UCheckbox
                 v-model="form.agreeTerms"
                 :ui="{
