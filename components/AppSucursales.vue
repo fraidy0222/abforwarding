@@ -1,5 +1,5 @@
 <template>
-  <section ref="branchesSection" class="bg-white py-16 md:py-24">
+  <section ref="branchesSection" class="bg-white py-16 md:py-12">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Encabezado -->
       <div ref="header" class="text-center mb-16">
@@ -195,15 +195,15 @@ const branches = [
   },
 ];
 
-const sucursales = [
-  {
-    id: 1,
-    name: "Toronto (Oficina Central ), Canadá",
-    address: "Perervinskii B-R, D.19, C.1, E.1, P.Iii, Moscow, Russia",
-    phone: "+7 966-193-20-11",
-    email: "sales@abforwarding.ru",
-  },
-];
+// const sucursales = [
+//   {
+//     id: 1,
+//     name: "Toronto (Oficina Central ), Canadá",
+//     address: "Perervinskii B-R, D.19, C.1, E.1, P.Iii, Moscow, Russia",
+//     phone: "+7 966-193-20-11",
+//     email: "sales@abforwarding.ru",
+//   },
+// ];
 
 // Filtrado por país
 const selectedCountry = ref("Todos");
