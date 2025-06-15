@@ -3,7 +3,7 @@
     <HeaderAppHeader class="hidden md:block" />
     <HeaderAppHeaderMovil class="md:hidden block" />
     <slot />
-    <!-- <AppFooter /> -->
+    <AppFooter />
   </div>
 </template>
 
