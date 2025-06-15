@@ -37,7 +37,7 @@
         <div>
           <h4 class="text-lg font-semibold mb-4">{{ t("footer.legal") }}</h4>
           <ul class="space-y-3">
-            <li class="opacity-0 translate-y-4 link-legal-1">
+            <li class="link-legal-1 opacity-0 translate-y-4">
               <a
                 href="#"
                 class="text-gray-400 hover:text-gray-200 transition-colors duration-300"
@@ -45,7 +45,7 @@
                 {{ t("footer.privacidad") }}
               </a>
             </li>
-            <li class="opacity-0 translate-y-4 link-legal-2">
+            <li class="link-legal-2 opacity-0 translate-y-4">
               <a
                 href="#"
                 class="text-gray-400 hover:text-gray-200 transition-colors duration-300"
@@ -83,7 +83,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -104,44 +104,57 @@ const iataColumn = ref(null);
 const copyright = ref(null);
 
 onMounted(() => {
-  // Animación con GSAP
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: footer.value,
-      start: "top 80%",
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Animación cuando el elemento es visible
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".link-0",
+              toggleActions: "play none none none",
+            },
+          });
+
+          tl.fromTo(
+            ".link-0, .link-1, .link-2, .link-3, .link-legal-1, .link-legal-2",
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              stagger: 0.15,
+              ease: "power3.out",
+            }
+          )
+            .fromTo(
+              iataColumn.value,
+              { opacity: 0, y: 20 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                ease: "power3.out",
+              },
+              "-=0.5"
+            )
+            .fromTo(
+              copyright.value,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.8 },
+              "-=0.6"
+            );
+
+          observer.unobserve(entry.target); // Opcional: dejar de observar
+        }
+      });
     },
-  });
+    { threshold: 0.1 }
+  ); // 10% del elemento visible
 
-  // Animación escalonada de los links
-  tl.fromTo(
-    ".link-0, .link-1, .link-2, .link-3, .link-legal-1, .link-legal-2",
-    { opacity: 0, y: 20 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      stagger: 0.15,
-      ease: "power3.out",
-    }
-  )
-    .fromTo(
-      iataColumn.value,
-      { opacity: 0, y: 20 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        ease: "power3.out",
-      },
-      "-=0.5"
-    )
-
-    .fromTo(
-      copyright.value,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.8 },
-      "-=0.6"
-    );
+  if (footer.value) {
+    observer.observe(footer.value);
+  }
 });
 </script>
 
