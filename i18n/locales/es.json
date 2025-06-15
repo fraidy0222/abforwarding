@@ -149,5 +149,13 @@
         }
       }
     }
+  },
+  "footer": {
+    "enlaces": "Enlaces",
+    "legal": "Legal",
+    "derechos": "© 2024 Logística Corp. Todos los derechos reservados.",
+    "privacidad": "Política de Privacidad",
+    "terminos": "Términos de Servicio",
+    "certificaciones": "Certificaciones"
   }
 }
