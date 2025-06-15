@@ -83,10 +83,11 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onBeforeUnmount } from "vue";
 import { useI18n } from "vue-i18n";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRouter } from "vue-router";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -102,9 +103,15 @@ const navLinks = computed(() => [
 const footer = ref(null);
 const iataColumn = ref(null);
 const copyright = ref(null);
+let observer = null;
 
-onMounted(() => {
-  const observer = new IntersectionObserver(
+const setupObserver = () => {
+  // Limpiar observer existente si hay uno
+  if (observer) {
+    observer.disconnect();
+  }
+
+  observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -144,16 +151,45 @@ onMounted(() => {
               { opacity: 1, duration: 0.8 },
               "-=0.6"
             );
-
-          observer.unobserve(entry.target); // Opcional: dejar de observar
         }
       });
     },
     { threshold: 0.1 }
-  ); // 10% del elemento visible
+  );
 
   if (footer.value) {
     observer.observe(footer.value);
+  }
+};
+
+onMounted(() => {
+  setupObserver();
+
+  // Reiniciar animaciones cuando cambia la ruta
+  const router = useRouter();
+  router.afterEach(() => {
+    // Resetear estilos antes de volver a animar
+    gsap.set(
+      [
+        ".link-0, .link-1, .link-2, .link-3, .link-legal-1, .link-legal-2",
+        iataColumn.value,
+        copyright.value,
+      ],
+      {
+        opacity: 0,
+        y: 20,
+      }
+    );
+
+    // Pequeño delay para asegurar que el DOM está listo
+    setTimeout(setupObserver, 50);
+  });
+});
+
+onBeforeUnmount(() => {
+  // Limpiar el observer cuando el componente se desmonta
+  if (observer) {
+    observer.disconnect();
   }
 });
 </script>
