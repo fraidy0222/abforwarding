@@ -1,6 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
+    head: {
+      title: "ABForwarding",
+      charset: "utf-16",
+      viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+      htmlAttrs: {
+        lang: "es",
+      },
+    },
     baseURL: "/abforwarding/",
     buildAssetsDir: "_nuxt/",
   },
