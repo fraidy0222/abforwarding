@@ -8,8 +8,8 @@ const navLinks = computed(() => [
   { name: t("header.inicio"), path: "/" },
   { name: t("header.servicios"), path: "/" },
   { name: t("header.sobre-nosotros"), path: "/" },
-  { name: t("header.sucursales"), path: "/" },
-  { name: t("header.contacto"), path: "/contacto" },
+  { name: t("header.sucursales"), path: "/sucursales" },
+  // { name: t("header.contacto"), path: "/contacto" },
 ]);
 </script>
 
