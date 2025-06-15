@@ -1,176 +1,134 @@
 <template>
-  <section class="relative bg-gray-50 py-16 md:py-24">
+  <section ref="branchesSection" class="bg-white py-16 md:py-24">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Encabezado -->
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          {{ $t("sucursales.title") || "Red Global de Sucursales" }}
+      <div ref="header" class="text-center mb-16">
+        <h2
+          ref="title"
+          class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
+        >
+          {{ $t("branches.title") || "Nuestras Sucursales" }}
         </h2>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        <p ref="subtitle" class="text-xl text-gray-600 max-w-2xl mx-auto">
           {{
-            $t("sucursales.subtitle") ||
-            "Conectando mercados a través de nuestra red logística internacional"
+            $t("branches.subtitle") ||
+            "Encuentra nuestras oficinas alrededor del mundo"
           }}
         </p>
       </div>
 
-      <!-- Contenido de dos columnas -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Columna izquierda - Lista de sucursales -->
-        <div class="space-y-4">
-          <div
-            v-for="(branch, index) in branches"
-            :key="index"
-            class="p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-secondary transition-all duration-300 cursor-pointer group"
-            :class="{ 'border-secondary': hoveredBranch === index }"
-            @mouseenter="hoveredBranch = index"
-            @mouseleave="hoveredBranch = null"
-          >
-            <div class="flex items-start">
-              <div
-                class="bg-secondary/10 p-2 rounded-lg mr-4 group-hover:bg-secondary/20 transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 text-secondary"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-1">
-                  {{ branch.city }}
-                </h3>
-                <div class="flex items-center text-secondary text-sm">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4 mr-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  {{ branch.schedule }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Columna derecha - Mapa interactivo -->
-        <div
-          class="relative h-full min-h-[400px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
-        >
-          <!-- Imagen del mapa -->
-          <img
-            src="/images/about-bg.png"
-            alt="Mapa mundial de sucursales"
-            class="w-full h-full object-cover"
-          />
-
-          <!-- Puntos interactivos -->
-          <div
-            v-for="(branch, index) in branches"
-            :key="'map-' + index"
-            class="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
-            :style="{
-              left: `${branch.coords.x}%`,
-              top: `${branch.coords.y}%`,
-            }"
-          >
-            <!-- Punto con animación -->
-            <div
-              class="w-4 h-4 rounded-full bg-secondary ring-4 ring-secondary/30 cursor-pointer relative"
-              @mouseenter="hoveredBranch = index"
-              @mouseleave="hoveredBranch = null"
-            >
-              <div
-                class="absolute inset-0 rounded-full bg-secondary animate-ping opacity-30"
-              ></div>
-            </div>
-
-            <!-- Tooltip flotante -->
-            <div
-              class="absolute left-6 -top-4 bg-white shadow-md rounded-lg px-3 py-2 text-sm font-medium text-gray-800 whitespace-nowrap transition-all duration-300"
-              :class="{
-                'opacity-0 invisible': hoveredBranch !== index,
-                'opacity-100 visible': hoveredBranch === index,
-              }"
-            >
-              {{ branch.city }}
-              <div
-                class="absolute left-0 top-1/2 w-2 h-2 bg-white transform -translate-x-1/2 -translate-y-1/2 rotate-45"
-              ></div>
-            </div>
-          </div>
-        </div>
+      <!-- Selector de país -->
+      <div ref="filter" class="flex justify-center mb-12">
+        <USelect
+          v-model="selectedCountry"
+          :options="countries"
+          option-attribute="name"
+          size="lg"
+          class="min-w-[250px]"
+          :ui="{
+            rounded: 'rounded-lg',
+            variant: {
+              outline:
+                'focus:ring-2 focus:ring-secondary focus:border-transparent border-gray-300',
+            },
+          }"
+        />
       </div>
 
-      <!-- Panel de información inferior -->
+      <!-- Grid de sucursales -->
       <div
-        v-if="hoveredBranch !== null"
-        class="mt-8 bg-white rounded-xl shadow-sm border border-gray-100 p-6 transition-all duration-300"
+        ref="branchesGrid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
-        <h3 class="text-2xl font-bold text-gray-900 mb-2">
-          {{ branches[hoveredBranch].city }}
-        </h3>
-        <p class="text-gray-600 mb-4">
-          {{ branches[hoveredBranch].address }}
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <div class="flex items-center text-secondary">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 mr-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-              />
-            </svg>
-            {{ branches[hoveredBranch].phone }}
+        <!-- Tarjeta de sucursal -->
+        <div
+          v-for="(branch, index) in filteredBranches"
+          :key="branch.id"
+          :ref="
+            (el) => {
+              branchCards[index] = el;
+            }
+          "
+          class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden"
+        >
+          <!-- Mapa -->
+          <div class="h-48 bg-gray-100 relative overflow-hidden">
+            <iframe
+              :src="branch.mapUrl"
+              width="100%"
+              height="100%"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              class="absolute inset-0 w-full h-full object-cover"
+            ></iframe>
           </div>
-          <div class="flex items-center text-gray-500">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 mr-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+
+          <!-- Contenido -->
+          <div class="p-6 md:p-8">
+            <div class="flex items-start mb-4">
+              <div class="bg-secondary/10 p-2 rounded-lg mr-4">
+                <UIcon
+                  name="i-heroicons-building-office"
+                  class="h-6 w-6 text-secondary"
+                />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">
+                  {{ branch.name }}
+                </h3>
+                <p class="text-secondary font-medium">{{ branch.country }}</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <UIcon
+                  name="i-heroicons-map-pin"
+                  class="h-5 w-5 text-gray-500 mt-0.5 mr-3"
+                />
+                <p class="text-gray-600">{{ branch.address }}</p>
+              </div>
+
+              <div class="flex items-start">
+                <UIcon
+                  name="i-heroicons-phone"
+                  class="h-5 w-5 text-gray-500 mt-0.5 mr-3"
+                />
+                <p class="text-gray-600">{{ branch.phone }}</p>
+              </div>
+
+              <div class="flex items-start">
+                <UIcon
+                  name="i-heroicons-envelope"
+                  class="h-5 w-5 text-gray-500 mt-0.5 mr-3"
+                />
+                <p class="text-gray-600">{{ branch.email }}</p>
+              </div>
+
+              <div class="flex items-start">
+                <UIcon
+                  name="i-heroicons-clock"
+                  class="h-5 w-5 text-gray-500 mt-0.5 mr-3"
+                />
+                <p class="text-gray-600">{{ branch.schedule }}</p>
+              </div>
+            </div>
+
+            <UButton
+              :to="branch.directionsUrl"
+              target="_blank"
+              color="primary"
+              variant="outline"
+              class="mt-6 w-full justify-center"
+              :ui="{ rounded: 'rounded-lg' }"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              {{ $t("branches.get_directions") || "Cómo llegar" }}
+              <UIcon
+                name="i-heroicons-arrow-top-right-on-square"
+                class="ml-2 h-4 w-4"
               />
-            </svg>
-            {{ branches[hoveredBranch].email }}
+            </UButton>
           </div>
         </div>
       </div>
@@ -178,62 +136,177 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: "GlobalNetwork",
-  data() {
-    return {
-      hoveredBranch: 0, // Mostrar primera sucursal por defecto
-      branches: [
-        {
-          city: "Miami",
-          address: "1234 Logistics Avenue, Suite 500, FL 33166",
-          phone: "+1 (305) 123-4567",
-          email: "miami@abforwarding.com",
-          schedule: "Lun-Vie: 8:00 - 18:00",
-          coords: { x: 25, y: 45 },
-        },
-        {
-          city: "Madrid",
-          address: "Calle Transporte 42, 28012 Madrid",
-          phone: "+34 91 876 5432",
-          email: "madrid@abforwarding.com",
-          schedule: "Lun-Vie: 9:00 - 17:00",
-          coords: { x: 48, y: 35 },
-        },
-        {
-          city: "Dubái",
-          address: "Trade Center Building, Floor 10, Zona Franca",
-          phone: "+971 4 567 8901",
-          email: "dubai@abforwarding.com",
-          schedule: "Dom-Jue: 8:00 - 17:00",
-          coords: { x: 60, y: 45 },
-        },
-        {
-          city: "Shanghái",
-          address: "88 Pudong South Road, 200120",
-          phone: "+86 21 2345 6789",
-          email: "shanghai@abforwarding.com",
-          schedule: "Lun-Vie: 8:30 - 17:30",
-          coords: { x: 75, y: 40 },
-        },
-        {
-          city: "Sídney",
-          address: "Circular Quay, NSW 2000, Australia",
-          phone: "+61 2 9876 5432",
-          email: "sydney@abforwarding.com",
-          schedule: "Lun-Vie: 9:00 - 17:30",
-          coords: { x: 85, y: 65 },
-        },
-      ],
-    };
+<script setup>
+import { ref, computed, onMounted } from "vue";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Datos de ejemplo - reemplaza con los reales de tu cliente
+const branches = [
+  {
+    id: 1,
+    name: "Sede Central",
+    country: "Rusia",
+    address: "Perervinskii B-R, D.19, C.1, E.1, P.Iii, Moscow, Russia",
+    phone: "+7 966-193-20-11",
+    email: "sales@abforwarding.ru",
+    schedule: "Lunes a Viernes: 9:00 - 18:00",
+    mapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.373374032104!2d37.61842331593076!3d55.75199998055305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5a738fa419%3A0x7c347d506f52311f!2sRed%20Square!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus",
+    directionsUrl: "https://goo.gl/maps/example1",
   },
-};
+  {
+    id: 2,
+    name: "Oficina Regional Este",
+    country: "Rusia",
+    address: "Ulitsa Lenina, 25, Vladivostok, Russia",
+    phone: "+7 423 245-67-89",
+    email: "east@abforwarding.ru",
+    schedule: "Lunes a Viernes: 8:00 - 17:00",
+    mapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2918.241354032104!2d131.88505731593076!3d43.11553698055305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5fb39cba5249d485%3A0x719b94929fef3c84!2sVladivostok!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus",
+    directionsUrl: "https://goo.gl/maps/example2",
+  },
+  {
+    id: 3,
+    name: "Oficina Comercial Oeste",
+    country: "Alemania",
+    address: "Friedrichstraße 100, 10117 Berlin, Germany",
+    phone: "+49 30 1234567",
+    email: "europe@abforwarding.ru",
+    schedule: "Lunes a Viernes: 8:30 - 17:30",
+    mapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.123456789012!2d13.38885931593076!3d52.520008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84e373f035901%3A0x42120465b5e3b70!2sBerlin!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus",
+    directionsUrl: "https://goo.gl/maps/example3",
+  },
+  {
+    id: 4,
+    name: "Centro Logístico Asia",
+    country: "China",
+    address: "88 Century Avenue, Pudong, Shanghai, China",
+    phone: "+86 21 5879 1234",
+    email: "asia@abforwarding.ru",
+    schedule: "Lunes a Sábado: 8:00 - 20:00",
+    mapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3411.123456789012!2d121.49735931593076!3d31.239987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35b27040b1f53c33%3A0x295129423c9653a6!2sShanghai!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus",
+    directionsUrl: "https://goo.gl/maps/example4",
+  },
+];
+
+const sucursales = [
+  {
+    id: 1,
+    name: "Toronto (Oficina Central ), Canadá",
+    address: "Perervinskii B-R, D.19, C.1, E.1, P.Iii, Moscow, Russia",
+    phone: "+7 966-193-20-11",
+    email: "sales@abforwarding.ru",
+  },
+];
+
+// Filtrado por país
+const selectedCountry = ref("Todos");
+const countries = computed(() => {
+  const uniqueCountries = [...new Set(branches.map((b) => b.country))];
+  return ["Todos", ...uniqueCountries];
+});
+
+const filteredBranches = computed(() => {
+  return selectedCountry.value === "Todos"
+    ? branches
+    : branches.filter((b) => b.country === selectedCountry.value);
+});
+
+// Referencias para animaciones
+const branchesSection = ref(null);
+const header = ref(null);
+const title = ref(null);
+const subtitle = ref(null);
+const filter = ref(null);
+const branchesGrid = ref(null);
+const branchCards = ref([]);
+
+// Animaciones
+onMounted(() => {
+  // Animación del encabezado
+  gsap.from([title.value, subtitle.value], {
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.2,
+    scrollTrigger: {
+      trigger: header.value,
+      start: "top 80%",
+      toggleActions: "play none none none",
+    },
+  });
+
+  // Animación del filtro
+  gsap.from(filter.value, {
+    y: 20,
+    opacity: 0,
+    duration: 0.6,
+    scrollTrigger: {
+      trigger: filter.value,
+      start: "top 80%",
+      toggleActions: "play none none none",
+    },
+  });
+
+  // Animación de las tarjetas
+  branchCards.value.forEach((card, index) => {
+    if (card) {
+      gsap.from(card, {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: card,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+  });
+
+  // Efecto hover para las tarjetas
+  branchCards.value.forEach((card) => {
+    if (card) {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, {
+          y: -5,
+          duration: 0.3,
+        });
+      });
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, {
+          y: 0,
+          duration: 0.3,
+        });
+      });
+    }
+  });
+});
 </script>
 
 <style scoped>
-/* Animación personalizada para el hover en tarjetas */
-.group:hover .group-hover\:bg-secondary\/20 {
-  background-color: rgba(223, 119, 26, 0.2);
+/* Efecto hover personalizado para las tarjetas */
+.branch-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.branch-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el iframe del mapa */
+.map-container {
+  filter: grayscale(20%);
+  transition: filter 0.3s ease;
+}
+.map-container:hover {
+  filter: grayscale(0%);
 }
 </style>
